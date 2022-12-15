@@ -1,4 +1,4 @@
-package Aula01;
+package Aula03;
 
 public class PrimeiroExercicio {
     // CONSTANTE

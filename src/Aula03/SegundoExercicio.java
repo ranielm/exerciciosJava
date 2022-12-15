@@ -1,6 +1,5 @@
-package Aula01;
+package Aula03;
 
-import Aula02.*;
 import java.util.Scanner;
 
 
