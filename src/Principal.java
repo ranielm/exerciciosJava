@@ -1,51 +1,32 @@
-import Aula08.Conta;
+import Aula08.ContaCorrente;
+import Aula08.SaldoInsuficienteException;
 
 public class Principal {
-    public static void main(String[] args) {
 
-        // criarContas();
-        criarContaSimples();
+    public static void main(String[] args) throws Exception {
+        criaContaCorrente();
     }
 
-    private static void criarContaSimples() {
+    private static void criaContaCorrente() throws Exception {
+        System.out.println("Criando conta");
+        ContaCorrente cc = new ContaCorrente();
+
+        System.out.println("Depositando dinheiro");
+        cc.deposita(10);
+
         try {
-            Conta contaPoupanca;
-            contaPoupanca = new Conta();
-            contaPoupanca.depositar(120);
-            contaPoupanca.sacar(130);
-        } catch (Exception e) {
-            // erro no método depositar ou erro no método sacar
-            // print o erro por favor
-            System.out.println("Não foi possível criar sua conta: " + e.getMessage());
+            System.out.println("Dinheiro atual: " + cc.saldo);
+            System.out.println("Sacando dinheiro");
+            cc.saca(9);
+            System.out.println("Dinheiro atual: " + cc.saldo);
+            System.out.println("Sacando mais dinheiro");
+//            cc.saca(100);
+            System.out.println("Dinheiro atual pós saques: " + cc.saldo);
+        } catch (SaldoInsuficienteException e) {
+            System.out.println(e.getMessage());
+            criaContaCorrente();
         }
-    }
 
-    private static void criarContas() throws Exception {
-        // criando a conta poupanca
-        Conta contaPoupanca;
-        contaPoupanca = new Conta();
-
-        // alterando os valores de minhaConta
-        contaPoupanca.titular = "Raniel Mendonça";
-        contaPoupanca.saldo = 1000;
-
-        // saca 200 reais
-        contaPoupanca.sacar(200);
-
-        // deposita 500 reais
-        contaPoupanca.depositar(500);
-
-        System.out.println("Saldo atual da conta poupanca: " + contaPoupanca.saldo);
-
-        // criando a conta corrente
-        Conta contaCorrente = new Conta();
-
-        contaPoupanca.depositar(100);
-        contaPoupanca.sacar(1000);
-
-        System.out.println("Saldo atual da conta poupanca: " + contaPoupanca.saldo);
-
-        contaCorrente.depositar(100);
-        contaCorrente.sacar(1000);
+        System.out.println("Dinheiro atual pós saques: " + cc.saldo);
     }
 }
