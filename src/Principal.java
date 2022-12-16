@@ -1,32 +1,20 @@
-import Aula08.ContaCorrente;
-import Aula08.SaldoInsuficienteException;
+import java.util.Scanner;
 
 public class Principal {
+        public static void main(String[] args)
+        {
+            double minutosNoAno = 60 * 24 * 365;
 
-    public static void main(String[] args) throws Exception {
-        criaContaCorrente();
-    }
+            Scanner input = new Scanner(System.in);
 
-    private static void criaContaCorrente() throws Exception {
-        System.out.println("Criando conta");
-        ContaCorrente cc = new ContaCorrente();
+            System.out.println("Digite o numero de minutos: ");
 
-        System.out.println("Depositando dinheiro");
-        cc.deposita(10);
+            double minutos = input.nextDouble();
 
-        try {
-            System.out.println("Dinheiro atual: " + cc.saldo);
-            System.out.println("Sacando dinheiro");
-            cc.saca(9);
-            System.out.println("Dinheiro atual: " + cc.saldo);
-            System.out.println("Sacando mais dinheiro");
-//            cc.saca(100);
-            System.out.println("Dinheiro atual pós saques: " + cc.saldo);
-        } catch (SaldoInsuficienteException e) {
-            System.out.println(e.getMessage());
-            criaContaCorrente();
+            long anos = (long) (minutos / minutosNoAno);
+            int dias = (int) (minutos / 60 / 24) % 365;
+
+            System.out.println((int) minutos + " minutos são aproximandamente " + anos + " anos e " + dias + " dias");
+
         }
-
-        System.out.println("Dinheiro atual pós saques: " + cc.saldo);
-    }
 }
